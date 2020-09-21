@@ -8,29 +8,22 @@ export class ListsController extends BaseController {
         super("api/lists")
         this.router
             .use(auth0provider.getAuthorizedUserInfo)
-            .get('', this.getAll)
-            .get('/:id', this.getById)
+            // .get('boards/:id/lists', this.getAll)
+            //.get('lists/:id', this.getById)
+            // get tasks
             .post('', this.create)
             .put('/:id', this.edit)
             .delete('/:id', this.delete)
     }
 
 
-    async getAll(req, res, next) {
-        try {
-            //only gets lists by user who is logged in
-            let data = await listService.getAll(req.userInfo.email)
-            return res.send(data)
-        }
-        catch (err) { next(err) }
-    }
 
-    async getById(req, res, next) {
-        try {
-            let data = await listService.getById(req.params.id, req.userInfo.email)
-            return res.send(data)
-        } catch (error) { next(error) }
-    }
+    // async getById(req, res, next) {
+    //     try {
+    //         let data = await listService.getById(req.params.id, req.userInfo.email)
+    //         return res.send(data)
+    //     } catch (error) { next(error) }
+    // }
 
     async create(req, res, next) {
         try {

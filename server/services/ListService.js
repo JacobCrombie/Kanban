@@ -3,8 +3,8 @@ import { BadRequest } from "../utils/Errors"
 
 
 class ListService {
-    async getAll(userEmail) {
-        return await dbContext.Lists.find({ creatorEmail: userEmail }).populate("creator", "name picture")
+    async getAll(query = {}) {
+        return await dbContext.Lists.find(query).populate("creator", "name picture")
     }
 
     async getById(id, userEmail) {
