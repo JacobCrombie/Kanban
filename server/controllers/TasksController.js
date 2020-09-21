@@ -11,7 +11,6 @@ export class TasksController extends BaseController {
         super("api/tasks")
         this.router
             .use(auth0provider.getAuthorizedUserInfo)
-            .get('', this.getAll)
             .get('/:id', this.getById)
             .post('', this.create)
             .put('/:id', this.edit)

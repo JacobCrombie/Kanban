@@ -5,7 +5,7 @@ let ObjectId = Schema.Types.ObjectId
 const Task = new Schema({
     description: { type: String, required: true },
     creatorEmail: { type: String, required: true },
-
+    listId: { type: ObjectId, ref: 'List', required: true }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 Task.virtual("creator",
