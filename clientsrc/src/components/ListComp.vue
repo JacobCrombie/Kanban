@@ -3,7 +3,7 @@
     <div class="card">
       <h3>{{listProp.title}}</h3>
       <ul>
-        <task-comp v-for="task in tasks" :key="task.id" :taskProp="task" />
+        <task-comp v-for="task in tasks" :key="task.id" :taskProp="task"/>
       </ul>
     </div>
   </div>
@@ -11,6 +11,7 @@
 
 
 <script>
+import TaskComp from '../components/TaskComp'
 export default {
   name: "list-comp",
   mounted() {
@@ -21,11 +22,13 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks;
+      return this.$store.state.tasks[this.listProp.id];
     },
   },
   methods: {},
-  components: {},
+  components: {
+    TaskComp
+  },
   props: ["listProp"],
 };
 </script>

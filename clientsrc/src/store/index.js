@@ -13,7 +13,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
+    tasks: {},
     //REVIEW need to add comments when we build it in the back end
   },
   mutations: {
@@ -29,8 +29,8 @@ export default new Vuex.Store({
     setLists(state, lists) {
       state.lists = lists
     },
-    setTasks(state, tasks) {
-      state.tasks = tasks
+    setTasks(state, payload) {
+      Vue.set(state.tasks, payload.listId, payload.tasks)
     }
   },
   actions: {
@@ -90,7 +90,7 @@ export default new Vuex.Store({
     async getTasksByListId({ commit, dispatch }, listId) {
       try {
         let res = await api.get('lists/' + listId + '/tasks')
-        commit('setTasks', res.data)
+        commit('setTasks', {tasks: res.data, listId})
         console.log(res)
       } catch (error) {
         console.error(error)

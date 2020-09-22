@@ -8,7 +8,7 @@
         </div>
 
         <div class="row">
-          <list-comp v-for="list in lists" :key="list.id" :listProp="list" />
+          <list-comp v-for="list in lists" :key="list.id" :listProp="list"/>
           <!--
           <li class="list-group-item">Item 1</li>
           -->
