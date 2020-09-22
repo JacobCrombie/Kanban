@@ -1,9 +1,18 @@
 <template>
 <div class="container-fluid">
-  <div class="board card mt-2 row">
-    <h1 v-if="board.title" class="card-header">{{board.title}}</h1>
-    <h1 v-else>Loading...</h1>
+  <div class="row" v-if="board.title">
+    <div class="card col">
+      <div class="card-body">
+        <h1 class="card-title">{{board.title}}</h1>
+        <p class="card-text">Text</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Item 1</li>
+        <li class="list-group-item">Item 2</li>
+        <li class="list-group-item">Item 3</li>
+      </ul>
     </div>
+  </div>
 
 </div>
 </template>
