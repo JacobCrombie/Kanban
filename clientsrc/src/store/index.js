@@ -82,6 +82,22 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async addList({commit, dispatch}, listData){
+      try {
+        await api.post('lists', listData)
+        dispatch('getListsByBoardId', listData.boardId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteList({commit, dispatch}, listData){
+      try {
+        await api.delete('lists/' + listData.id)
+        dispatch('getListsByBoardId', listData.boardId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
 
 
     //#endregion
@@ -91,7 +107,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get('lists/' + listId + '/tasks')
         commit('setTasks', {tasks: res.data, listId})
-        console.log(res)
       } catch (error) {
         console.error(error)
       }

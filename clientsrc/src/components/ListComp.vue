@@ -1,6 +1,7 @@
 <template>
   <div class="list-comp col-4">
     <div class="card">
+      <button class="btn-sm btn-danger" @click="deleteList">Delete</button>
       <h3>{{listProp.title}}</h3>
       <ul>
         <task-comp v-for="task in tasks" :key="task.id" :taskProp="task"/>
@@ -25,7 +26,11 @@ export default {
       return this.$store.state.tasks[this.listProp.id];
     },
   },
-  methods: {},
+  methods: {
+    deleteList(){
+      this.$store.dispatch('deleteList', this.listProp)
+    }
+  },
   components: {
     TaskComp
   },
