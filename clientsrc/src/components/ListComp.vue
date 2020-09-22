@@ -14,7 +14,7 @@
 export default {
   name: "list-comp",
   mounted() {
-    this.$store.dispatch("getTasksByListId");
+    this.$store.dispatch("getTasksByListId", this.listProp.id);
   },
   data() {
     return {};
@@ -25,9 +25,7 @@ export default {
     },
   },
   methods: {},
-  components: {
-    TaskComp,
-  },
+  components: {},
   props: ["listProp"],
 };
 </script>
