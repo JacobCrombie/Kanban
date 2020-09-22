@@ -6,7 +6,7 @@
       <input type="text" placeholder="description" v-model="newBoard.description" />
       <button type="submit">Create Board</button>
     </form>
-    <div v-for="board in boards" :key="board.id">
+    <div v-for="board in boards" :key="board.id" @click="setActive(board)">
       <router-link :to="{name: 'board', params: {boardId: board.id}}">{{board.title}}</router-link>
     </div>
   </div>
@@ -36,6 +36,9 @@ export default {
       this.$store.dispatch("addBoard", this.newBoard);
       this.newBoard = { title: "", description: "" };
     },
+    setActive(board){
+      this.$store.dispatch('setActive', board)
+    }
   },
 };
 </script>
