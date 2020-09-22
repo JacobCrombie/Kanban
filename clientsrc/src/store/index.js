@@ -98,6 +98,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async editList({commit,dispatch}, listData){
+      try {
+        await api.put('lists/'+ listData.id, {title: listData.title})
+        dispatch('getListsByBoardId', listData.boardId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
 
 
     //#endregion

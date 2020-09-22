@@ -2,9 +2,20 @@
   <div class="list-comp col-4">
     <div class="card">
       <button class="btn-sm btn-danger" @click="deleteList">Delete</button>
+      <form @submit.prevent="editList">
+        <button class="btn-sm btn-warning" type="submit">Edit</button>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="New List Title..."
+            v-model="editListData.title"
+          />
+        </div>
+      </form>
       <h3>{{listProp.title}}</h3>
       <ul>
-        <task-comp v-for="task in tasks" :key="task.id" :taskProp="task"/>
+        <task-comp v-for="task in tasks" :key="task.id" :taskProp="task" />
       </ul>
     </div>
   </div>
@@ -12,14 +23,16 @@
 
 
 <script>
-import TaskComp from '../components/TaskComp'
+import TaskComp from "../components/TaskComp";
 export default {
   name: "list-comp",
   mounted() {
     this.$store.dispatch("getTasksByListId", this.listProp.id);
   },
   data() {
-    return {};
+    return {
+      editListData:{}
+    };
   },
   computed: {
     tasks() {
@@ -27,12 +40,16 @@ export default {
     },
   },
   methods: {
-    deleteList(){
-      this.$store.dispatch('deleteList', this.listProp)
-    }
+    deleteList() {
+      this.$store.dispatch("deleteList", this.listProp);
+    },
+    editList() {
+      this.$store.dispatch("editList", {id: this.listProp.id, title: this.editListData.title, boardId: this.listProp.boardId});
+      this.editListData= {}
+    },
   },
   components: {
-    TaskComp
+    TaskComp,
   },
   props: ["listProp"],
 };
