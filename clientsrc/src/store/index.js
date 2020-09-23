@@ -126,7 +126,26 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }    //#region 
+    },
+    async addTask({commit,dispatch}, taskData ){
+      try {
+        await api.post('tasks', taskData)
+        dispatch('getTasksByListId', taskData.listId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteTask({commit, dispatch}, taskData){
+      try {
+        console.log(taskData);
+        await api.delete('tasks/'+ taskData.id)
+        dispatch('getTasksByListId', taskData.listId)
+      } catch (error) {
+        
+      }
+    }
+    
+    //#region 
   }
 
 })

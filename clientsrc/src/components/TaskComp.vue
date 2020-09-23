@@ -1,6 +1,7 @@
 <template>
   <div class="task-comp">
-    <li>{{taskProp.description}}</li>
+    <li>{{taskProp.description}}<i class="fa fa-trash" @click="deleteTask"></i></li>
+    
   </div>
 </template>
 
@@ -13,7 +14,11 @@ export default {
     return {}
   },
   computed:{},
-  methods:{},
+  methods:{
+    deleteTask(){
+      this.$store.dispatch('deleteTask', this.taskProp)
+    }
+  },
   components:{},
 }
 </script>

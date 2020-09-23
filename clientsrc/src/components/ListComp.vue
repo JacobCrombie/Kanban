@@ -17,6 +17,17 @@
       <ul>
         <task-comp v-for="task in tasks" :key="task.id" :taskProp="task" />
       </ul>
+            <form @submit.prevent="addTask">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Add Task..."
+            v-model="addTaskData.description"
+          />
+        </div>
+        <button class="btn-sm btn-warning" type="submit">Add Task</button>
+      </form>
     </div>
   </div>
 </template>
@@ -31,7 +42,8 @@ export default {
   },
   data() {
     return {
-      editListData:{}
+      editListData:{},
+      addTaskData:{}
     };
   },
   computed: {
@@ -47,6 +59,10 @@ export default {
       this.$store.dispatch("editList", {id: this.listProp.id, title: this.editListData.title, boardId: this.listProp.boardId});
       this.editListData= {}
     },
+    addTask(){
+      this.$store.dispatch('addTask', {listId: this.listProp.id, description: this.addTaskData.description})
+      this.addTaskData={}
+    }
   },
   components: {
     TaskComp,
