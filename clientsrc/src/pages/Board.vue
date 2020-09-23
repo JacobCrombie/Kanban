@@ -3,6 +3,7 @@
     <div class="row" v-if="board.title">
       <div class="card col">
         <div class="card-body">
+          <button class="btn btn-danger" @click="deleteBoard">DELETE</button>
           <h1 class="card-title">{{board.title}}</h1>
           <p class="card-text">{{board.description}}</p>
         </div>
@@ -53,6 +54,9 @@ export default {
     addList(){
       this.$store.dispatch('addList', {boardId: this.$route.params.boardId, title: this.listData.title} )
       this.listData = {}
+    },
+    deleteBoard(){
+      this.$store.dispatch('deleteBoard', this.$route.params.boardId)
     }
   },
   props: ["boardId"],
