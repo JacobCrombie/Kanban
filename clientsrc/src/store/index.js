@@ -31,7 +31,7 @@ export default new Vuex.Store({
     },
     setTasks(state, payload) {
       Vue.set(state.tasks, payload.listId, payload.tasks)
-    }
+    },
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -76,6 +76,14 @@ export default new Vuex.Store({
         router.push({ name: 'boards' })
       } catch (error) {
         console.error(error);
+      }
+    },
+    async getBoardById({commit,dispatch}, boardId){
+      try {
+        let res = await api.get('boards/'+boardId)
+        commit('setActiveBoard', res.data)
+      } catch (error) {
+        
       }
     },
     //#endregion
@@ -147,7 +155,8 @@ export default new Vuex.Store({
     async selectList({ commit, dispatch }, taskData) {
       try {
         await api.put("tasks/" + taskData.id, { listId: taskData.listId })
-        dispatch("getTasksByListId", taskData.listId)
+        dispatch('getTasksByListId', taskData.listId)
+        dispatch('getTasksByListId', taskData.oldListId)
       } catch (error) {
         console.error(error)
       }

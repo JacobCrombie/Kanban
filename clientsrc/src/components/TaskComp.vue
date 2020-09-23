@@ -37,6 +37,8 @@ export default {
       this.$store.dispatch("selectList", {
         id: this.taskProp.id,
         listId: this.selectListData.listId,
+        boardId: this.$route.params.boardId,
+        oldListId: this.taskProp.listId
       });
     },
   },

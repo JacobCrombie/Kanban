@@ -35,6 +35,7 @@ import ListComp from "../components/ListComp.vue";
 export default {
   name: "board",
   mounted() {
+    this.$store.dispatch('getBoardById', this.$route.params.boardId)
     this.$store.dispatch("getListsByBoardId", this.boardId);
   },
   data(){
