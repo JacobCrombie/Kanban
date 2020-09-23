@@ -11,6 +11,20 @@
     >
       <option :value="list.id" v-for="list in lists" :key="list.id">{{list.title}}</option>
     </select>
+    <ul>
+      <li v-for="comment in taskProp.comments" :key="comment.id">{{comment.description}}</li>
+    </ul>
+    <form @submit.prevent="addComment">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add Comment..."
+          v-model="addCommentData.description"
+        />
+      </div>
+      <button class="btn-sm btn-warning" type="submit">Add Comment</button>
+    </form>
   </div>
 </template>
 
@@ -22,6 +36,7 @@ export default {
   data() {
     return {
       selectListData: {},
+      addCommentData: {},
     };
   },
   computed: {
@@ -38,8 +53,14 @@ export default {
         id: this.taskProp.id,
         listId: this.selectListData.listId,
         boardId: this.$route.params.boardId,
-        oldListId: this.taskProp.listId
+        oldListId: this.taskProp.listId,
       });
+    },
+    addComment() {
+      let newTask = { ...this.taskProp };
+      newTask.comments.push(this.addCommentData);
+      this.$store.dispatch("addComment", newTask);
+      this.addCommentData = {};
     },
   },
   components: {},

@@ -78,12 +78,12 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async getBoardById({commit,dispatch}, boardId){
+    async getBoardById({ commit, dispatch }, boardId) {
       try {
-        let res = await api.get('boards/'+boardId)
+        let res = await api.get('boards/' + boardId)
         commit('setActiveBoard', res.data)
       } catch (error) {
-        
+
       }
     },
     //#endregion
@@ -157,6 +157,13 @@ export default new Vuex.Store({
         await api.put("tasks/" + taskData.id, { listId: taskData.listId })
         dispatch('getTasksByListId', taskData.listId)
         dispatch('getTasksByListId', taskData.oldListId)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async addComment({ commit, dispatch }, commentData) {
+      try {
+        await api.put("tasks/" + commentData.id, commentData)
       } catch (error) {
         console.error(error)
       }

@@ -21,4 +21,11 @@ Task.virtual("creator",
         foreignField: "email",
         justOne: true
     })
+
+Comment.virtual("creator", {
+    localField: "creatorEmail",
+    ref: "Profile",
+    foreignField: "email",
+    justOne: true
+})
 export default Task
