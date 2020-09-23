@@ -70,10 +70,10 @@ export default new Vuex.Store({
     setActive({ commit, dispatch }, board) {
       commit('setActiveBoard', board)
     },
-    async deleteBoard({commit, dispatch}, boardId){
+    async deleteBoard({ commit, dispatch }, boardId) {
       try {
         await api.delete('boards/' + boardId)
-        router.push({name: 'boards'})
+        router.push({ name: 'boards' })
       } catch (error) {
         console.error(error);
       }
@@ -90,7 +90,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async addList({commit, dispatch}, listData){
+    async addList({ commit, dispatch }, listData) {
       try {
         await api.post('lists', listData)
         dispatch('getListsByBoardId', listData.boardId)
@@ -98,7 +98,7 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async deleteList({commit, dispatch}, listData){
+    async deleteList({ commit, dispatch }, listData) {
       try {
         await api.delete('lists/' + listData.id)
         dispatch('getListsByBoardId', listData.boardId)
@@ -106,9 +106,9 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async editList({commit,dispatch}, listData){
+    async editList({ commit, dispatch }, listData) {
       try {
-        await api.put('lists/'+ listData.id, {title: listData.title})
+        await api.put('lists/' + listData.id, { title: listData.title })
         dispatch('getListsByBoardId', listData.boardId)
       } catch (error) {
         console.error(error);
@@ -122,12 +122,12 @@ export default new Vuex.Store({
     async getTasksByListId({ commit, dispatch }, listId) {
       try {
         let res = await api.get('lists/' + listId + '/tasks')
-        commit('setTasks', {tasks: res.data, listId})
+        commit('setTasks', { tasks: res.data, listId })
       } catch (error) {
         console.error(error)
       }
     },
-    async addTask({commit,dispatch}, taskData ){
+    async addTask({ commit, dispatch }, taskData) {
       try {
         await api.post('tasks', taskData)
         dispatch('getTasksByListId', taskData.listId)
@@ -135,16 +135,24 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async deleteTask({commit, dispatch}, taskData){
+    async deleteTask({ commit, dispatch }, taskData) {
       try {
         console.log(taskData);
-        await api.delete('tasks/'+ taskData.id)
+        await api.delete('tasks/' + taskData.id)
         dispatch('getTasksByListId', taskData.listId)
       } catch (error) {
-        
+
+      }
+    },
+    async selectList({ commit, dispatch }, taskData) {
+      try {
+        await api.put("tasks/" + taskData.id, { listId: taskData.listId })
+        dispatch("getTasksByListId", taskData.listId)
+      } catch (error) {
+        console.error(error)
       }
     }
-    
+
     //#region 
   }
 
