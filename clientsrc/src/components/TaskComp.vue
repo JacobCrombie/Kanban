@@ -11,9 +11,14 @@
     >
       <option :value="list.id" v-for="list in lists" :key="list.id">{{list.title}}</option>
     </select>
+
     <ul>
-      <li v-for="comment in taskProp.comments" :key="comment.id">{{comment.description}}</li>
+      <li v-for="comment in taskProp.comments" :key="comment.id">
+        {{comment.description}}
+        <i class="fa fa-trash" @click="deletecomment"></i>
+      </li>
     </ul>
+
     <form @submit.prevent="addComment">
       <div class="form-group">
         <input
