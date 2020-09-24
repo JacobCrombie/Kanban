@@ -8,27 +8,33 @@
         >
           <option :value="list.id" v-for="list in lists" :key="list.id">{{list.title}}</option>
         </select>
-        <p>{{taskProp.description}}</p>
-        <i class="fa fa-trash" @click="deleteTask"></i>
+        <p class="font-weight-bold">{{taskProp.description}}</p>
+        <div>
+        <i class="fa fa-angle-up mr-4 text-info" @click="commentsToggle=!commentsToggle" v-if="commentsToggle"></i>
+        <i class="fa fa-angle-down mr-4 text-info" @click="commentsToggle=!commentsToggle" v-if="!commentsToggle"></i>
+        <i class="fa fa-trash text-danger" @click="deleteTask"></i>
+        </div>
       </li>
 
-    <ul>
-      <li v-for="(comment,index) in taskProp.comments" :key="comment.id">
+    <ul v-if="commentsToggle">
+      <li class="d-flex justify-content-start" v-for="(comment,index) in taskProp.comments" :key="comment.id">
+        <i class="fa fa-minus mr-2" @click="deleteComment(index)"></i>
+        <p class="text-muted">
         {{comment.description}}
-        <i class="fa fa-trash" @click="deleteComment(index)"></i>
+        </p>
       </li>
     </ul>
 
-    <form @submit.prevent="addComment">
-      <div class="form-group">
+    <form @submit.prevent="addComment" class="d-flex justify-content-end" v-if="commentsToggle">
+      <div class="form-group form-inline">
         <input
           type="text"
           class="form-control"
           placeholder="Add Comment..."
           v-model="addCommentData.description"
         />
-      </div>
       <button class="btn-sm btn-warning" type="submit">Add Comment</button>
+      </div>
     </form>
   </div>
 </template>
@@ -42,6 +48,7 @@ export default {
     return {
       selectListData: {},
       addCommentData: {},
+      commentsToggle: false
     };
   },
   computed: {
@@ -81,6 +88,10 @@ export default {
 <style scoped>
 select {
   width: 0;
+  cursor: pointer;
+}
+i{
+  cursor: pointer;
 }
 
 </style>
