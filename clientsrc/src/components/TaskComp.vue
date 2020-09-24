@@ -1,16 +1,16 @@
 <template>
   <div class="task-comp">
-    <li>
-      {{taskProp.description}}
-      <i class="fa fa-trash" @click="deleteTask"></i>
-    </li>
-    <select
-      v-model="selectListData.listId"
-      @change="selectList"
-      class="form-control form-control-sm"
-    >
-      <option :value="list.id" v-for="list in lists" :key="list.id">{{list.title}}</option>
-    </select>
+      <li class="d-flex justify-content-between">
+        <select
+          v-model="selectListData.listId"
+          @change="selectList"
+          class="form-control form-control-sm"
+        >
+          <option :value="list.id" v-for="list in lists" :key="list.id">{{list.title}}</option>
+        </select>
+        <p>{{taskProp.description}}</p>
+        <i class="fa fa-trash" @click="deleteTask"></i>
+      </li>
 
     <ul>
       <li v-for="(comment,index) in taskProp.comments" :key="comment.id">
@@ -79,4 +79,8 @@ export default {
 
 
 <style scoped>
+select {
+  width: 0;
+}
+
 </style>

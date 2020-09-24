@@ -1,32 +1,43 @@
 <template>
   <div class="list-comp col-4">
     <div class="card">
-      <button class="btn-sm btn-danger" @click="deleteList">Delete</button>
-      <form @submit.prevent="editList">
-        <button class="btn-sm btn-warning" type="submit">Edit</button>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="New List Title..."
-            v-model="editListData.title"
-          />
-        </div>
-      </form>
+      <div class="col d-flex justify-content-between mt-2">
+        <i class="fa fa-pen text-warning cursor" @click="editToggle=!editToggle"></i>
+        <i class="fa fa-trash text-danger cursor" @click="deleteList"></i>
+      </div>
+      <div class="col d-flex justify-content-center" v-if="editToggle">
+        <form @submit.prevent="editList" class="mt-2">
+          <div class="form-group form-inline">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="New List Title..."
+              v-model="editListData.title"
+            />
+            <button class="btn-sm btn-warning ml-1" type="submit">Edit</button>
+          </div>
+        </form>
+      </div>
       <h3>{{listProp.title}}</h3>
       <ul>
         <task-comp v-for="(task,index) in tasks" :key="task.id" :taskProp="task" :index="index" />
       </ul>
-      <form @submit.prevent="addTask">
-        <div class="form-group">
+      <i
+        class="ml-3 fa fa-plus d-flex justify-self-start mb-3"
+        v-if="!addToggle"
+        @click="addToggle=!addToggle"
+      ></i>
+      <form @submit.prevent="addTask" v-if="addToggle">
+        <div class="form-group form-inline col d-flex">
+          <i class="fa fa-angle-up mr-3" @click="addToggle=!addToggle" v-if="addToggle"></i>
           <input
             type="text"
             class="form-control"
             placeholder="Add Task..."
             v-model="addTaskData.description"
           />
+          <button class="btn-sm btn-success ml-1" type="submit">Add Task</button>
         </div>
-        <button class="btn-sm btn-warning" type="submit">Add Task</button>
       </form>
     </div>
   </div>
@@ -44,6 +55,8 @@ export default {
     return {
       editListData: {},
       addTaskData: {},
+      editToggle: false,
+      addToggle: false,
     };
   },
   computed: {
@@ -69,6 +82,7 @@ export default {
         description: this.addTaskData.description,
       });
       this.addTaskData = {};
+      this.addToggle = !this.addToggle;
     },
   },
   components: {
@@ -80,4 +94,14 @@ export default {
 
 
 <style scoped>
+i {
+  cursor: pointer;
+}
+.form-control {
+  width: 75%;
+}
+ul {
+  list-style: lower-alpha;
+  padding: 0px 20px 0px 20px
+}
 </style>
