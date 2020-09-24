@@ -18,7 +18,7 @@
           </div>
         </form>
       </div>
-      <h3>{{listProp.title}}</h3>
+      <h3 class="under">{{listProp.title}}</h3>
       <ul>
         <task-comp v-for="(task,index) in tasks" :key="task.id" :taskProp="task" :index="index" />
       </ul>
@@ -103,5 +103,8 @@ i {
 ul {
   list-style: lower-alpha;
   padding: 0px 20px 0px 20px
+}
+.under{
+  text-decoration: underline;
 }
 </style>
