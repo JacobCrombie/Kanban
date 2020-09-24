@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <div class="row activeboard m-5" v-if="board.title">
+  <div class="container-fluid main-back">
+    <div class="row activeboard m-5 " v-if="board.title">
       <div class="card col shadow p-3 bg-white rounded">
         <div class="card-body">
           <div class="d-flex justify-content-end">
@@ -72,6 +72,9 @@ export default {
 </script>
 
 <style scoped>
+.main-back{
+  background-color: teal;
+}
 .under{
   text-decoration: underline;
 }
