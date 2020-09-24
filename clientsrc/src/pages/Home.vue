@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid bg-img">
     <div class="row align-items-center">
       <div class="col">
         <h1 class>KanBan</h1>
@@ -28,8 +28,9 @@ export default {
   display: flex;
   justify-content: center;
 }
-
 .bg-img {
-  background-image: url();
+  background-image: url("../assets/deskimg.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 </style>
