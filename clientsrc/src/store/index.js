@@ -161,7 +161,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async addComment({ commit, dispatch }, commentData) {
+    async editTask({ commit, dispatch }, commentData) {
       try {
         await api.put("tasks/" + commentData.id, commentData)
       } catch (error) {

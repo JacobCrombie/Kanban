@@ -13,9 +13,9 @@
     </select>
 
     <ul>
-      <li v-for="comment in taskProp.comments" :key="comment.id">
+      <li v-for="(comment,index) in taskProp.comments" :key="comment.id">
         {{comment.description}}
-        <i class="fa fa-trash" @click="deletecomment"></i>
+        <i class="fa fa-trash" @click="deleteComment(index)"></i>
       </li>
     </ul>
 
@@ -37,7 +37,7 @@
 <script>
 export default {
   name: "task-comp",
-  props: ["taskProp"],
+  props: ["taskProp", "index"],
   data() {
     return {
       selectListData: {},
@@ -64,8 +64,13 @@ export default {
     addComment() {
       let newTask = { ...this.taskProp };
       newTask.comments.push(this.addCommentData);
-      this.$store.dispatch("addComment", newTask);
+      this.$store.dispatch("editTask", newTask);
       this.addCommentData = {};
+    },
+    deleteComment(index) {
+      let newTask = { ...this.taskProp };
+      newTask.comments.splice(index, 1);
+      this.$store.dispatch("editTask", newTask);
     },
   },
   components: {},

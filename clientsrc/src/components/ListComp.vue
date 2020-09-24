@@ -15,9 +15,9 @@
       </form>
       <h3>{{listProp.title}}</h3>
       <ul>
-        <task-comp v-for="task in tasks" :key="task.id" :taskProp="task" />
+        <task-comp v-for="(task,index) in tasks" :key="task.id" :taskProp="task" :index="index" />
       </ul>
-            <form @submit.prevent="addTask">
+      <form @submit.prevent="addTask">
         <div class="form-group">
           <input
             type="text"
@@ -42,8 +42,8 @@ export default {
   },
   data() {
     return {
-      editListData:{},
-      addTaskData:{}
+      editListData: {},
+      addTaskData: {},
     };
   },
   computed: {
@@ -56,13 +56,20 @@ export default {
       this.$store.dispatch("deleteList", this.listProp);
     },
     editList() {
-      this.$store.dispatch("editList", {id: this.listProp.id, title: this.editListData.title, boardId: this.listProp.boardId});
-      this.editListData= {}
+      this.$store.dispatch("editList", {
+        id: this.listProp.id,
+        title: this.editListData.title,
+        boardId: this.listProp.boardId,
+      });
+      this.editListData = {};
     },
-    addTask(){
-      this.$store.dispatch('addTask', {listId: this.listProp.id, description: this.addTaskData.description})
-      this.addTaskData={}
-    }
+    addTask() {
+      this.$store.dispatch("addTask", {
+        listId: this.listProp.id,
+        description: this.addTaskData.description,
+      });
+      this.addTaskData = {};
+    },
   },
   components: {
     TaskComp,
