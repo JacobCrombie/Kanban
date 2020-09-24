@@ -1,6 +1,6 @@
 <template>
   <div class="list-comp col-4">
-    <div class="card">
+    <div class="card shadow mb-5 p-1 bg-white rounded">
       <div class="col d-flex justify-content-between mt-2">
         <i class="fa fa-pen text-warning cursor" @click="editToggle=!editToggle"></i>
         <i class="fa fa-trash text-danger cursor" @click="deleteList"></i>
@@ -98,7 +98,7 @@ i {
   cursor: pointer;
 }
 .form-control {
-  width: 75%;
+  width: 70%;
 }
 ul {
   list-style: lower-alpha;

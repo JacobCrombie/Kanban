@@ -1,20 +1,24 @@
 <template>
   <div class="container-fluid">
-    <div class="row" v-if="board.title">
-      <div class="card col">
+    <div class="row activeboard m-5" v-if="board.title">
+      <div class="card col shadow p-3 bg-white rounded">
         <div class="card-body">
-          <button class="btn btn-danger" @click="deleteBoard">DELETE</button>
-          <h1 class="card-title">{{board.title}}</h1>
+          <div class="d-flex justify-content-end">
+            <i class="fa fa-trash text-danger" @click="deleteBoard"></i>
+          </div>
+          <div class="mb-3">
+          <h1 class="card-title font-weight-bold under">{{board.title}}</h1>
           <p class="card-text">{{board.description}}</p>
-        </div>
+          </div>
 
         <div class="row">
           <list-comp v-for="list in lists" :key="list.id" :listProp="list" />
         </div>
+        </div>
         <div class="row">
           <form class="col" @submit.prevent="addList">
-            <div class="form-group">
-              <label for="newlist">New List</label>
+              <h5 class="under">New List</h5>
+            <div class="form-group form-inline d-flex justify-content-center">
               <input
                 type="text"
                 class="form-control"
@@ -66,3 +70,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.under{
+  text-decoration: underline;
+}
+.activeboard{
+  min-height: 82vh
+}
+</style>
