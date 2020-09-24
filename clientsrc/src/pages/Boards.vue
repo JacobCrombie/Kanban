@@ -77,6 +77,8 @@ export default {
   background-image: url("../assets/paintstroke.png");
   background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
+  height: 150px;
 }
 .bluepaint {
   background-image: url("../assets/bluepaint.jpg");
