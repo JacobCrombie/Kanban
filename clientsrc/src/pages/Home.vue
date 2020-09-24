@@ -1,6 +1,10 @@
 <template>
-  <div class="home">
-    <h1>This is your home page.</h1>
+  <div class="home container-fluid">
+    <div class="row align-items-center">
+      <div class="col">
+        <h1 class>KanBan</h1>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,10 +17,19 @@ export default {
   },
   computed: {},
   methods: {},
-  components: {}
+  components: {},
 };
 </script>
 
 
 <style scoped>
+.home {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.bg-img {
+  background-image: url();
+}
 </style>
