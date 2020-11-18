@@ -32,9 +32,11 @@ export default {
   flex-direction: column;
 }
 .bg-img {
-  background-image: url("../assets/deskimg.jpg");
-  background-size: auto;
+  background-image: url("../assets/images/agileboard.jpg");
+  background-size: 100vw;
+  background-position: center;
   background-repeat: no-repeat;
+  background-color: #02174e;
 }
 
 .bg-dark {
