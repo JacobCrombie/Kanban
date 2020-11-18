@@ -1,8 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-teal">
-    <router-link class="navbar-brand" :to="{ name: 'home' }"
-      >Kanban</router-link
-    >
+  <nav class="navbar navbar-dark navbar-expand-lg bg-secondary">
     <button
       class="navbar-toggler"
       type="button"
@@ -27,19 +24,21 @@
           :class="{ active: $route.name == 'boards' }"
         >
           <router-link class="nav-link" :to="{ name: 'boards' }"
-            >My-Dashboard</router-link
+            >My-Boards</router-link
           >
         </li>
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-success"
+          class="btn btn-outline-success"
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
-          Login
+          <span class="log"> Login </span>
         </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-outline-danger" @click="logout" v-else>
+          <span class="log">Log Out</span>
+        </button>
       </span>
     </div>
   </nav>
@@ -50,7 +49,7 @@ import axios from "axios";
 
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true
+  withCredentials: true,
 });
 export default {
   name: "Navbar",
@@ -63,14 +62,11 @@ export default {
       console.log(this.$auth.user);
     },
     async logout() {
-      await this.$auth.logout({returnTo: window.location.origin});
-    }
-  }
+      await this.$auth.logout({ returnTo: window.location.origin });
+    },
+  },
 };
 </script>
 
-<style>
-.bg-teal{
-  background-color: rgb(31, 149, 196);
-}
+<style scoped>
 </style>
