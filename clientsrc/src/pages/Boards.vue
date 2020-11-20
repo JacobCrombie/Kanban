@@ -1,58 +1,65 @@
 <template>
-  <div class="boards">
-    <div class="p-3">
-      <div>
-        <h1 class="">My-Boards</h1>
-      </div>
-      <button
-        type="button"
-        class="btn btn-success"
-        data-toggle="modal"
-        data-target="#add-board"
-      >
-        Add Board
-      </button>
-      <div class="modal fade" id="add-board">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">New Board</h5>
-              <button type="button" class="close" data-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-              <form @submit.prevent="addBoard">
-                <input
-                  type="text"
-                  v-model="newBoard.title"
-                  placeholder="Title"
-                  required
-                />
-                <input
-                  type="text"
-                  v-model="newBoard.description"
-                  placeholder="Description"
-                  required
-                />
-                <button type="submit" class="btn btn-outline-success mt-3">
-                  Create
+  <div class="boards container-fluid bg-img">
+    <div class="row">
+      <div class="col p-2">
+        <div>
+          <button
+            type="button"
+            class="btn btn-success"
+            data-toggle="modal"
+            data-target="#add-board"
+          >
+            Create Board
+          </button>
+          <h1 class="my-2">My Boards</h1>
+        </div>
+
+        <div class="modal fade" id="add-board">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">New Board</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form @submit.prevent="addBoard">
+                  <input
+                    type="text"
+                    v-model="newBoard.title"
+                    placeholder="Title"
+                    required
+                  />
+                  <input
+                    type="text"
+                    v-model="newBoard.description"
+                    placeholder="Description"
+                    required
+                  />
+                  <button type="submit" class="btn btn-outline-success mt-3">
+                    Create
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
                 </button>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row scroll bg-img">
       <board-comp v-for="board in boards" :key="board.id" :boardProp="board" />
     </div>
   </div>
@@ -93,4 +100,29 @@ export default {
 </script>
 
 <style scoped>
+.bg-img {
+  background-image: url("../assets/images/cork.png");
+}
+.scroll {
+  position: absolute;
+  height: 82vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
 </style>
