@@ -1,6 +1,6 @@
 <template>
   <div class="boards container-fluid bg-img">
-    <div class="row">
+    <div class="row border-bottom border-dark">
       <div class="col p-2">
         <div>
           <button
@@ -11,7 +11,7 @@
           >
             Create Board
           </button>
-          <h1 class="my-2">My Boards</h1>
+          <h1 class="my-2 board-title">My Boards</h1>
         </div>
 
         <div class="modal fade" id="add-board">
@@ -112,17 +112,23 @@ export default {
 .scroll::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  background-color: #f5f5f5;
+  background-image: url("../assets/images/cork.png");
 }
 
 .scroll::-webkit-scrollbar {
   width: 12px;
-  background-color: #f5f5f5;
+  background-image: url("../assets/images/cork.png");
 }
 
 .scroll::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
+}
+.border-bottom {
+  border-bottom: 3px solid #555 !important;
+}
+.board-title {
+  text-shadow: 2px 2px 10px #ffffff;
 }
 </style>

@@ -69,7 +69,6 @@ export default new Vuex.Store({
     },
     setActiveBoard({ commit, dispatch }, board) {
       commit('setActiveBoard', board)
-      debugger
       router.push({ name: "board", params: { id: board.id } })
     },
     async deleteBoard({ commit, dispatch }, boardId) {
