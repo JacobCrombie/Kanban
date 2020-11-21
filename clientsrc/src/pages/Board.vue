@@ -2,19 +2,22 @@
   <div class="container-fluid bg-offwhite">
     <div class="row activeboard p-3" v-if="board.title">
       <div class="card col shadow p-3 bg-offwhite rounded">
-        <div class="card-body">
+        <div>
           <div class="d-flex justify-content-end">
             <i class="fa fa-trash text-danger" @click="deleteBoard"></i>
           </div>
           <div class="mb-3">
-            <h1 class="card-title font-weight-bold under">{{ board.title }}</h1>
+            <h1 class="card-title font-weight-bold under">
+              {{ board.title }}
+            </h1>
             <p class="card-text">{{ board.description }}</p>
           </div>
-
-          <div class="row">
-            <list-comp v-for="list in lists" :key="list.id" :listProp="list" />
-          </div>
         </div>
+
+        <div class="row scroll">
+          <list-comp v-for="list in lists" :key="list.id" :listProp="list" />
+        </div>
+
         <div class="row">
           <form class="col" @submit.prevent="addList">
             <h5 class="under">New List</h5>
@@ -85,9 +88,30 @@ export default {
   background-color: #f8f8ff;
 }
 .scroll {
-  position: absolute;
-  height: 82vh;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  height: 68vh;
+}
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f8f8ff;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f8f8ff;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+.border-bottom {
+  border-bottom: 3px solid #555 !important;
+}
+.board-title {
+  text-shadow: 2px 2px 10px #ffffff;
 }
 </style>
