@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid">
-    <div class="row activeboard m-5" v-if="board.title">
-      <div class="card col shadow p-3 bg-white rounded">
+  <div class="container-fluid bg-offwhite">
+    <div class="row activeboard p-3" v-if="board.title">
+      <div class="card col shadow p-3 bg-offwhite rounded">
         <div class="card-body">
           <div class="d-flex justify-content-end">
             <i class="fa fa-trash text-danger" @click="deleteBoard"></i>
@@ -80,5 +80,14 @@ export default {
 }
 .activeboard {
   min-height: 82vh;
+}
+.bg-offwhite {
+  background-color: #f8f8ff;
+}
+.scroll {
+  position: absolute;
+  height: 82vh;
+  width: 100%;
+  overflow-y: scroll;
 }
 </style>
