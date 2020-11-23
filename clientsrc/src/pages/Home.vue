@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .home {
-  min-height: 100vh;
+  min-height: 93.25vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -28,6 +28,6 @@ export default {
   background-size: 100vw;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #02174e;
+  background-color: #dfdfe7;
 }
 </style>
