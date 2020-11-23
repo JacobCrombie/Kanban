@@ -30,12 +30,51 @@
           :index="index"
         />
       </ul>
-      <i
-        class="ml-3 fa fa-plus d-flex justify-self-start mb-3"
-        v-if="!addToggle"
-        @click="addToggle = !addToggle"
-      ></i>
-      <form @submit.prevent="addTask" v-if="addToggle">
+      <div class="col">
+        <i
+          class="ml-3 fa fa-plus mb-2"
+          data-toggle="modal"
+          data-target="#add-task"
+        ></i>
+        <div class="modal fade" id="add-task">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">New Task</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form @submit.prevent="addList" class="d-flex flex-column">
+                  <input
+                    type="text"
+                    v-model="newTask.description"
+                    placeholder="Task Description"
+                    required
+                  />
+                  <button type="submit" class="btn btn-outline-success mt-3">
+                    Add Task
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <form @submit.prevent="addTask" v-if="addToggle">
         <div class="form-group form-inline col d-flex">
           <i
             class="fa fa-angle-up mr-3"
@@ -52,7 +91,7 @@
             Add Task
           </button>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </template>
@@ -69,9 +108,8 @@ export default {
   data() {
     return {
       editListData: {},
-      addTaskData: {},
+      newTask: {},
       editToggle: false,
-      addToggle: false,
     };
   },
   computed: {
