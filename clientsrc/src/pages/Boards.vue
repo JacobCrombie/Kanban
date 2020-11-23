@@ -1,17 +1,17 @@
 <template>
   <div class="boards container-fluid bg-img">
     <div class="row border-bottom border-dark">
-      <div class="col p-2">
-        <div>
+      <div class="col">
+        <div class="col p-2 d-flex flex-row">
+          <h1 class="my-2 board-title col-6">My Boards</h1>
           <button
             type="button"
-            class="btn btn-success"
+            class="btn btn-success m-3 flex-end"
             data-toggle="modal"
             data-target="#add-board"
           >
             Create Board
           </button>
-          <h1 class="my-2 board-title">My Boards</h1>
         </div>
 
         <div class="modal fade" id="add-board">
