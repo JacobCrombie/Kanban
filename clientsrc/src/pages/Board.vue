@@ -19,18 +19,57 @@
         </div>
 
         <div class="row">
-          <form class="col" @submit.prevent="addList">
-            <h5 class="under">New List</h5>
-            <div class="form-group form-inline d-flex justify-content-center">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="List Title..."
-                v-model="listData.title"
-              />
-              <button type="submit" class="btn btn-success">Add List</button>
+          <div class="col p-2">
+            <div>
+              <button
+                type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#add-list"
+              >
+                Create List
+              </button>
             </div>
-          </form>
+            <div class="modal fade" id="add-list">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">New List</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form @submit.prevent="addList" class="d-flex flex-column">
+                      <input
+                        type="text"
+                        v-model="newList.title"
+                        placeholder="Title"
+                        required
+                      />
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success mt-3"
+                      >
+                        Create
+                      </button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,7 +86,7 @@ export default {
   },
   data() {
     return {
-      listData: {},
+      newList: {},
     };
   },
   computed: {
@@ -62,9 +101,10 @@ export default {
     addList() {
       this.$store.dispatch("addList", {
         boardId: this.$route.params.id,
-        title: this.listData.title,
+        title: this.newList.title,
       });
-      this.listData = {};
+      this.newList = {};
+      $("#add-list").modal("toggle");
     },
     deleteBoard() {
       this.$store.dispatch("deleteBoard", this.$route.params.id);

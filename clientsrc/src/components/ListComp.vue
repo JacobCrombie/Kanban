@@ -2,7 +2,10 @@
   <div class="list-comp col-4">
     <div class="card shadow mb-5 p-1 bg-white rounded">
       <div class="col d-flex justify-content-between mt-2">
-        <i class="fa fa-pen text-warning cursor" @click="editToggle=!editToggle"></i>
+        <i
+          class="fa fa-pen text-warning cursor"
+          @click="editToggle = !editToggle"
+        ></i>
         <i class="fa fa-trash text-danger cursor" @click="deleteList"></i>
       </div>
       <div class="col d-flex justify-content-center" v-if="editToggle">
@@ -18,25 +21,36 @@
           </div>
         </form>
       </div>
-      <h3 class="under">{{listProp.title}}</h3>
+      <h3 class="under">{{ listProp.title }}</h3>
       <ul>
-        <task-comp v-for="(task,index) in tasks" :key="task.id" :taskProp="task" :index="index" />
+        <task-comp
+          v-for="(task, index) in tasks"
+          :key="task.id"
+          :taskProp="task"
+          :index="index"
+        />
       </ul>
       <i
         class="ml-3 fa fa-plus d-flex justify-self-start mb-3"
         v-if="!addToggle"
-        @click="addToggle=!addToggle"
+        @click="addToggle = !addToggle"
       ></i>
       <form @submit.prevent="addTask" v-if="addToggle">
         <div class="form-group form-inline col d-flex">
-          <i class="fa fa-angle-up mr-3" @click="addToggle=!addToggle" v-if="addToggle"></i>
+          <i
+            class="fa fa-angle-up mr-3"
+            @click="addToggle = !addToggle"
+            v-if="addToggle"
+          ></i>
           <input
             type="text"
             class="form-control"
             placeholder="Add Task..."
             v-model="addTaskData.description"
           />
-          <button class="btn-sm btn-success ml-1" type="submit">Add Task</button>
+          <button class="btn-sm btn-success ml-1" type="submit">
+            Add Task
+          </button>
         </div>
       </form>
     </div>
@@ -46,6 +60,7 @@
 
 <script>
 import TaskComp from "../components/TaskComp";
+import sweetAlert2 from "../Utils/sweetAlert2.js";
 export default {
   name: "list-comp",
   mounted() {
@@ -65,8 +80,9 @@ export default {
     },
   },
   methods: {
-    deleteList() {
-      this.$store.dispatch("deleteList", this.listProp);
+    async deleteList() {
+      if (await sweetAlert2.confirmAction())
+        this.$store.dispatch("deleteList", this.listProp);
     },
     editList() {
       this.$store.dispatch("editList", {
@@ -102,9 +118,9 @@ i {
 }
 ul {
   list-style: lower-alpha;
-  padding: 0px 20px 0px 20px
+  padding: 0px 20px 0px 20px;
 }
-.under{
+.under {
   text-decoration: underline;
 }
 </style>
