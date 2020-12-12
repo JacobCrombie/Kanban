@@ -8,7 +8,7 @@ mongoose.connection.on("error", err => {
   console.error("[DATABASE ERROR]:", err);
 });
 mongoose.connection.on("connection", () => {
-  console.log("DbConnection Successful");
+  ("DbConnection Successful");
 });
 
 export default class DbConnection {
@@ -16,7 +16,7 @@ export default class DbConnection {
     let status = 0;
     try {
       let status = await mongoose.connect(connectionstring);
-      console.log("[CONNECTION TO DB SUCCESSFUL]");
+      ("[CONNECTION TO DB SUCCESSFUL]");
       return status;
     } catch (e) {
       console.error(

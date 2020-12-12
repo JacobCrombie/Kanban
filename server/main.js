@@ -19,5 +19,5 @@ DbContext.connect();
 
 //Start Server
 socketServer.listen(port, () => {
-  console.log(`[SERVING ON PORT: ${port}]`);
+  (`[SERVING ON PORT: ${port}]`);
 });
