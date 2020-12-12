@@ -1,9 +1,11 @@
 <template>
-  <div class="board-comp col-4">
-    <div class="text-dark cursor" @click="boardPush">
-      <img class="card-img" src="../assets/images/sticky.png" />
+  <div class="board-comp col-12 col-md-6 col-lg-4 col-xl-3 text-dark">
+    <div class="card">
+      <img src="../assets/images/sticky.png" class="card-img" />
       <div class="card-img-overlay d-flex justify-content-center">
-        <h4 class="card-title align-self-center">{{ boardProp.title }}</h4>
+        <h5 class="card-title align-self-center cursor" @click="boardPush">
+          {{ boardProp.title }}
+        </h5>
       </div>
     </div>
   </div>
@@ -29,13 +31,14 @@ export default {
 
 
 <style scoped>
-.bg-image {
-  background-image: url("../assets/images/sticky.png");
-}
-.card-title {
-  transform: rotate(12deg);
+.card {
+  background-color: transparent;
+  border: none;
 }
 .cursor {
   cursor: pointer;
+}
+.card-title {
+  transform: rotate(12deg);
 }
 </style>

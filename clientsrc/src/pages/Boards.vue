@@ -1,19 +1,26 @@
 <template>
-  <div class="boards container-fluid bg-img">
-    <div class="row border-bottom border-dark">
+  <div class="boards container-fluid">
+    <div class="row border-bottom border-dark bg-img">
       <div class="col">
-        <div class="col p-2 d-flex flex-row">
-          <h1 class="my-2 board-title col-6">My Boards</h1>
+        <div class="col p-2 d-flex">
           <button
             type="button"
-            class="btn btn-success m-3 flex-end"
+            class="btn btn-success my-3"
+            data-toggle="modal"
+            data-target="#add-board"
+          >
+            Create Board
+          </button>
+          <h1 class="my-2 board-title col flex-grow">My Boards</h1>
+          <button
+            type="button"
+            class="btn btn-success my-3"
             data-toggle="modal"
             data-target="#add-board"
           >
             Create Board
           </button>
         </div>
-
         <div class="modal fade" id="add-board">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -59,7 +66,7 @@
       </div>
     </div>
 
-    <div class="row scroll bg-img">
+    <div class="row scroll justify-content-around bg-img">
       <board-comp v-for="board in boards" :key="board.id" :boardProp="board" />
     </div>
   </div>
@@ -105,7 +112,7 @@ export default {
 }
 .scroll {
   position: absolute;
-  height: 82vh;
+  height: 85%;
   width: 100%;
   overflow-y: scroll;
 }

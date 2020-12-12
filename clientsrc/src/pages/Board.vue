@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-offwhite">
+  <div class="container-fluid bg-img">
     <div class="row activeboard p-3" v-if="board.title">
       <div class="card col shadow p-3 bg-offwhite rounded">
         <div>
@@ -122,10 +122,13 @@ export default {
   text-decoration: underline;
 }
 .activeboard {
-  min-height: 82vh;
+  height: 93.4vh;
 }
 .bg-offwhite {
   background-color: #f8f8ff;
+}
+.bg-img {
+  background-image: url("../assets/images/cork.png");
 }
 .scroll {
   width: 100%;

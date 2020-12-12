@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navbar />
-    <router-view />
+    <router-view class="bg-img" />
   </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
     }
   },
   components: {
-    Navbar
-  }
+    Navbar,
+  },
 };
 </script>
 
@@ -52,3 +52,4 @@ export default {
   color: #42b983;
 }
 </style>
+

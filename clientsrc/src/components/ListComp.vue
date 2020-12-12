@@ -1,5 +1,5 @@
 <template>
-  <div class="list-comp col-4">
+  <div class="list-comp col-12 col-md-6 col-lg-4 col-xl-3">
     <div class="card shadow mb-5 p-1 bg-white rounded">
       <div class="col d-flex justify-content-between mt-2">
         <i
@@ -34,9 +34,9 @@
         <i
           class="ml-3 fa fa-plus mb-2"
           data-toggle="modal"
-          data-target="#add-task"
+          :data-target="'#add-task' + listProp.id"
         ></i>
-        <div class="modal fade" id="add-task">
+        <div class="modal fade" :id="'add-task' + listProp.id">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -48,7 +48,7 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <form @submit.prevent="addList" class="d-flex flex-column">
+                <form @submit.prevent="addTask" class="d-flex flex-column">
                   <input
                     type="text"
                     v-model="newTask.description"
@@ -73,25 +73,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <form @submit.prevent="addTask" v-if="addToggle">
-        <div class="form-group form-inline col d-flex">
-          <i
-            class="fa fa-angle-up mr-3"
-            @click="addToggle = !addToggle"
-            v-if="addToggle"
-          ></i>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Add Task..."
-            v-model="addTaskData.description"
-          />
-          <button class="btn-sm btn-success ml-1" type="submit">
-            Add Task
-          </button>
-        </div>
-      </form> -->
     </div>
   </div>
 </template>
@@ -133,10 +114,10 @@ export default {
     addTask() {
       this.$store.dispatch("addTask", {
         listId: this.listProp.id,
-        description: this.addTaskData.description,
+        description: this.newTask.description,
       });
-      this.addTaskData = {};
-      this.addToggle = !this.addToggle;
+      this.newTask = {};
+      $("#add-task" + this.listProp.id).modal("toggle");
     },
   },
   components: {
